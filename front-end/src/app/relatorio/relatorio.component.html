@@ -1,0 +1,42 @@
+<div class="content">
+  <div>
+
+    <mat-card class="cardStyle">
+
+      <p><a class="btn btn-primary btn-outline-primary px-4 py-2" (click)="listarVendas()"
+          routerLinkActive="active">ATUALIZAR LISTA</a></p>
+
+      <br /> <br>
+
+      <div class="table">
+          <tr>
+            <th>Código da Venda</th>
+            <th>Nome do Cliente</th>
+            <th>CPF do Cliente</th>
+            <th>Nome do Produto</th>
+            <th>Preço do Produto</th>
+            <th>Qtd do Produto</th>
+            <th>Total da Venda</th>
+            <th>Data da Venda</th>
+          </tr>
+          <tr *ngFor="let venda of vendas | paginate: { itemsPerPage: 6, currentPage: paginaAtual }">
+            <td>{{venda.id}}</td>
+            <td>{{venda.nomeCompleto}}</td>
+            <td>{{venda.cpf}}</td>
+            <td>{{venda.nome}}</td>
+            <td>{{venda.preco}}</td>
+            <td>{{venda.qtdEstoque}}</td>
+            <td>{{venda.totalVenda}}</td>
+            <td>{{venda.dataVenda}}</td>
+          </tr>
+      </div>
+
+      <pagination-controls (pageChange)="paginaAtual = $event" previousLabel="Anterior" nextLabel="Próximo">
+      </pagination-controls>
+    </mat-card>
+    <br />
+    <br />
+    <br />
+    <br />
+  </div>
+</div>

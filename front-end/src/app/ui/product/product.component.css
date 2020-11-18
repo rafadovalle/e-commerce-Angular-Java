@@ -1,0 +1,152 @@
+
+  .main-button {
+    background-color: #1976d2;
+    color: white;
+    border-radius: 10px;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.main-button:hover {
+    background-color: #1756d2;
+    color: lightgray;
+}
+
+.model-list {
+    list-style: none;
+    margin-left: 0;
+    padding-inline-start: 0;
+}
+
+.model-list-item {
+    background-color: #6db7ff;
+    color: white;
+    border-radius: 25px;
+    padding: 10px;
+    padding-right: 10px;
+    font-size: 1em;
+    
+    width: fit-content;
+}
+
+.cliente-botao-remover {
+  width: 16px;
+    height: 16px; 
+    color: firebrick;
+    cursor: pointer;    
+    display: block;
+    float: right;
+    margin: 3px;
+}
+
+
+.cliente-botao-editar {
+    width: 16px;
+    height: 16px; 
+    background-color: black;
+    cursor: pointer;    
+    display: block;
+    float: right;
+    margin: 3px;
+}
+
+tbody {
+  display: inline-block;
+}
+
+span {
+  color: #1756d2;
+}
+
+.cliente-botao-editar {
+    background-image: url("/assets/edit.png");
+}
+
+.cliente-botao-remover {
+    background-image: url("/assets/remove.png");
+}
+
+
+.example-container {
+  padding: 5%;
+}
+
+
+table {
+  text-align: center;
+  display: inline-block;
+  width: auto;
+  text-align: center;
+  
+
+}
+
+.error{
+  color: red;
+  font-size: 20px;
+} 
+
+.example-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.example-container > * {
+  width: 100%;
+}
+
+
+.cardStyle {
+  background-color: bisque;
+  opacity: 0.85;
+  text-align: center;
+  margin-top: 5rem;
+  color: #e6ebf1;
+  width: 100%;
+  margin: auto;
+  
+  border-radius: 7px;
+
+}
+
+.content {
+  display: flex;
+  margin: 10px auto;
+  padding: 0 16px;
+  max-width: 960px;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5rem;
+}
+
+
+
+p {
+  margin: auto;
+}
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+  color: black;
+}
+
+td {
+  padding-right: 8px;
+}
+
+#styleButton {
+  display: inline-flex;
+}
+
+p {
+  margin: 0px 5px;
+}

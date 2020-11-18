@@ -1,0 +1,155 @@
+<div class="content">
+  <div>
+
+    <mat-card class="cardStyle">
+
+      <p><a class="btn btn-primary btn-outline-primary px-4 py-2" (click)="listarClientes()" routerLink="/client"
+          routerLinkActive="active">ATUALIZAR LISTA</a></p>
+
+      <br />
+
+      <div class="table">
+        <tr>
+          <th></th>
+          <th>Nome Completo</th>
+          <th>CPF</th>
+          <th>E-mail</th>
+          <th>Forma de Pagamento</th>
+        </tr>
+
+        <tr *ngFor="let cliente of clientes | paginate: { itemsPerPage: 6, currentPage: paginaAtual }">
+          <td>{{cliente.id}}</td>
+          <td>{{cliente.nomeCompleto}}</td>
+          <td>{{cliente.cpf}}</td>
+          <td>{{cliente.email}}</td>
+          <td>{{cliente.formaPagamento}}</td>
+          <span class="cliente-botao-remover" (click)="removerCliente(cliente.id)"></span>
+          <span class="cliente-botao-editar" (click)="onSelect(cliente)"></span>
+        </tr>
+
+      </div>
+
+      <pagination-controls (pageChange)="paginaAtual = $event" previousLabel="Anterior" nextLabel="Próximo">
+      </pagination-controls>
+
+      <p><a class="btn btn-primary btn-outline-primary px-4 py-2" (click)="novoCliente()" routerLink="/client"
+          routerLinkActive="active">INSERIR</a></p>
+
+    </mat-card>
+
+    <br>
+
+    <div *ngIf="cliSel">
+      <mat-card class="cardStyle">
+
+        <h2>Inserir/Editar</h2>
+
+        <table class="example-full-width" cellspacing="0">
+          <tr>
+            <td>
+              <mat-form-field class="example-full-width">
+                <input matInput [(ngModel)]="cliSel.nomeCompleto" placeholder="Nome Completo"
+                  [formControl]="nomeCompletoControl" required>
+                <mat-error *ngIf="nomeCompletoControl.invalid">É necessário informar um nome</mat-error>
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="example-full-width">
+                <input matInput [(ngModel)]="cliSel.cpf" placeholder="CPF" [formControl]="cpfControl" required
+                  maxlength="11" minlength="11">
+                <mat-error *ngIf="cpfControl.invalid">CPF inválido</mat-error>
+              </mat-form-field>
+            </td>
+          </tr>
+        </table>
+
+        <br />
+
+        <table class="example-full-width" cellspacing="0">
+          <tr>
+            <td>
+              <mat-form-field class="example-full-width">
+                <input matInput [(ngModel)]="cliSel.dataNasc" type="text" placeholder="Data de Nascimento"
+                  [formControl]="dataNascControl" maxlength="10" required
+                  type="date">
+                <mat-error *ngIf="dataNascControl.invalid">É necessário informar uma data</mat-error>
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="example-full-width">
+                <input matInput [(ngModel)]="cliSel.email" placeholder="Endereço de e-mail" [formControl]="emailControl"
+                  required>
+                <mat-error *ngIf="emailControl.invalid">{{getErrorMessageEmail()}}</mat-error>
+              </mat-form-field>
+            </td>
+          </tr>
+        </table>
+
+        <br />
+
+        <table class="example-full-width" cellspacing="0">
+          <tr>
+            <td>
+              <mat-form-field class="example-full-width">
+                <input matInput [(ngModel)]="cliSel.endereco" placeholder="Endereço" [formControl]="enderecoControl"
+                  required>
+                <mat-error *ngIf="enderecoControl.invalid">Informe seu endereço</mat-error>
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="example-full-width">
+                <input matInput [(ngModel)]="cliSel.complemento" placeholder="Complemento">
+              </mat-form-field>
+            </td>
+          </tr>
+        </table>
+
+        <br>
+
+        <table class="example-full-width" cellspacing="0">
+          <tr>
+            <td>
+              <mat-form-field class="example-full-width">
+                <mat-select [(ngModel)]="cliSel.sexo" [formControl]="sexoControl" required placeholder="Gênero">
+                  <mat-option>--</mat-option>
+                  <mat-option *ngFor="let genero of generos" [value]="genero.name">
+                    {{genero.name}}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="sexoControl.hasError('required')">Selecione uma opção</mat-error>
+                <mat-hint>{{sexoControl.value?.valor}}</mat-hint>
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="example-full-width">
+                <mat-select [(ngModel)]="cliSel.formaPagamento" [formControl]="formaPagamentoControl" required
+                  placeholder="Forma de Pagamento">
+                  <mat-option>--</mat-option>
+                  <mat-option *ngFor="let pagamento of pagamentos" [value]="pagamento.name">
+                    {{pagamento.name}}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="formaPagamentoControl.hasError('required')">Selecione uma opção</mat-error>
+                <mat-hint>{{formaPagamentoControl.value?.valor}}</mat-hint>
+              </mat-form-field>
+            </td>
+          </tr>
+        </table>
+        <br>
+        <br />
+
+        <div id="styleButton">
+          <p><a class="btn btn-primary btn-outline-primary px-4 py-2" (click)="salvarCliente()" routerLink="/client"
+              routerLinkActive="active">Salvar</a></p>
+
+          <p><button class="btn btn-primary btn-outline-primary px-4 py-2" (click)="cancelar()" routerLink="/client"
+              routerLinkActive="active">Cancelar</button></p>
+        </div>
+      </mat-card>
+    </div>
+
+    <br />
+    <br />
+    <br />
+  </div>
+</div>

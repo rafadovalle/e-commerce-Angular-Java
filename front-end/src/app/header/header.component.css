@@ -1,0 +1,22 @@
+.header {
+  display: inline-flex;
+  width: 100%;
+  background: linear-gradient(to bottom right, #6b2c1a 0%, #000000 100%);
+  color: aliceblue;
+  position: relative;
+  
+}
+
+.footer {
+    
+    left: 0;
+    bottom: 0;
+  }
+
+
+
+  .opa {
+      width: 100%;
+      text-align: center;
+  }
+

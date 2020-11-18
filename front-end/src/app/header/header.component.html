@@ -1,0 +1,22 @@
+<mat-toolbar class="header">
+  <mat-toolbar-row>
+    <div class="opa">
+
+      <div>
+
+        <a mat-button [routerLink]="'/home'">
+          <mat-icon>home</mat-icon>
+          HOME
+        </a>
+        <a mat-button [routerLink]="'/galeria'">
+          <mat-icon>photo_album</mat-icon> GALERIA
+        </a>
+        <a mat-button [routerLink]="'/grupo'">
+          <mat-icon>person</mat-icon> QUEM SOMOS
+        </a>
+        <a mat-button [routerLink]="['/login']" (click)="logout()"> LOG OUT <mat-icon>arrow_forward</mat-icon>
+        </a>
+      </div>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>

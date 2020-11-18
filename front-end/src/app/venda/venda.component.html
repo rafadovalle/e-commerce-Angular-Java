@@ -1,0 +1,101 @@
+<div class="content">
+  <div>
+
+    <mat-card class="cardStyle">
+
+      <p><a class="btn btn-primary btn-outline-primary px-4 py-2" (click)="listarClientes()"
+          routerLinkActive="active">ATUALIZAR LISTA</a></p>
+
+      <br />
+
+      <div class="table">
+        <mat-radio-group class="example-radio-group" [(ngModel)]="cliente">
+          <tr>
+            <th></th>
+            <th>Nome Completo</th>
+            <th>CPF</th>
+            <th>E-mail</th>
+            <th>Forma de Pagamento</th>
+          </tr>
+          <tr *ngFor="let cliente of clientes | paginate: { itemsPerPage: 6, currentPage: paginaAtual }">
+            <div class="styleCheck">
+              <mat-radio-button color="primary" class="example-radio-button" [value]="cliente"></mat-radio-button>
+            </div>
+            <td>{{cliente.nomeCompleto}}</td>
+            <td>{{cliente.cpf}}</td>
+            <td>{{cliente.email}}</td>
+            <td>{{cliente.formaPagamento}}</td>
+          </tr>
+
+
+          <div *ngIf="enabled" class="example-selected-value">Cliente: {{cliente.nomeCompleto}} </div>
+          <button (click)="onSelectClient(cliente)">Confirmar</button>
+        </mat-radio-group>
+      </div>
+
+
+
+      <pagination-controls (pageChange)="paginaAtual = $event" previousLabel="Anterior" nextLabel="Próximo">
+      </pagination-controls>
+    </mat-card>
+
+    <br>
+
+    <mat-card class="cardStyle">
+
+      <p><a class="btn btn-primary btn-outline-primary px-4 py-2" (click)="listarProdutos()"
+          (click)="onSelect(produto)">ATUALIZAR LISTA</a></p>
+
+      <br />
+
+
+      <div class="table">
+        <mat-radio-group class="example-radio-group" [(ngModel)]="produto">
+
+          <tr>
+            <th></th>
+            <th>Nome</th>
+            <th>Tamanho</th>
+            <th>Preço</th>
+            <th>Qtd em estoque</th>
+            <th>Categoria</th>
+          </tr>
+          <tr *ngFor="let produto of produtos | paginate: { itemsPerPage: 6, currentPage: paginaAtual }">
+            <div class="styleCheck">
+              <mat-radio-button color="primary" class="example-radio-button" [value]="produto"></mat-radio-button>
+            </div>
+            <td>{{produto.nome}}</td>
+            <td>{{produto.tamanho}}</td>
+            <td>R$ {{produto.preco}}</td>
+            <td>
+              <mat-form-field class="example-margin">
+                <input matInput type="number" placeholder="Qtd">
+              </mat-form-field>
+              / {{produto.qtdEstoque}}
+            </td>
+            <td>{{produto.categoria}}</td>
+          </tr>
+          <div *ngIf="enabled" class="example-selected-value">Produto: {{produto.nome}} </div>
+          <button (click)="onSelectProduct(produto)">Confirmar</button>
+        </mat-radio-group>
+
+      </div>
+
+      <pagination-controls (pageChange)="paginaAtual = $event" previousLabel="Anterior" nextLabel="Próximo">
+      </pagination-controls>
+
+    </mat-card>
+    <br />
+
+    <mat-card class="cardStyle2">
+      <div id="styleButton">
+        <p><button class="btn btn-primary btn-outline-primary px-4 py-2" (click)="salvarVenda()" routerLink="/relatorio"
+            routerLinkActive="active">VENDER</button></p>
+      </div>
+    </mat-card>
+    <br />
+    <br />
+    <br />
+    <br />
+  </div>
+</div>

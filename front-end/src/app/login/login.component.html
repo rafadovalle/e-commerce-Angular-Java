@@ -1,0 +1,24 @@
+<div >
+
+  <h2 class="gradient-text">Quentinha Verde</h2>
+
+  <div fxLayout="row" fxLayoutAlign="center center" class="login-main">
+
+    <mat-card class="cardStyle">
+      <mat-card-header>
+        <mat-card-title>LOGIN</mat-card-title>
+      </mat-card-header>
+      <mat-card-content fxLayout="column">
+        <mat-form-field>
+          <input [(ngModel)]="usuario.nome" id="usuario" matInput placeholder="Email">
+        </mat-form-field>
+        <mat-form-field>
+          <input [(ngModel)]="usuario.senha" id="senha" type="password" matInput placeholder="password">
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <button class="btn btn-primary btn-outline-primary px-4 py-2" (click)="fazerLogin()">Login</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

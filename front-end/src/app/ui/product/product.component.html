@@ -1,0 +1,126 @@
+<div class="content">
+    <div>
+
+        <mat-card class="cardStyle">
+
+            <p><a class="btn btn-primary btn-outline-primary px-4 py-2" (click)="listarProdutos()" routerLink="/product"
+                    routerLinkActive="active">ATUALIZAR LISTA</a></p>
+
+            <br />
+
+            <div class="table">
+
+                <tr>
+                    <th></th>
+                    <th>Nome</th>
+                    <th>Tamanho</th>
+                    <th>Preço</th>
+                    <th>Qtd em estoque</th>
+                    <th>Categoria</th>
+                </tr>
+
+                <tr *ngFor="let produto of produtos | paginate: { itemsPerPage: 6, currentPage: paginaAtual }">
+                    <td>{{produto.id}}</td>
+                    <td>{{produto.nome}}</td>
+                    <td>{{produto.tamanho}}</td>
+                    <td>{{produto.preco}}</td>
+                    <td>{{produto.qtdEstoque}}</td>
+                    <td>{{produto.categoria}}</td>
+                    <span class="cliente-botao-remover" (click)="removerProduto(produto.id)"></span>
+                    <span class="cliente-botao-editar" (click)="onSelect(produto)"></span>
+
+                </tr>
+            </div>
+
+            <pagination-controls (pageChange)="paginaAtual = $event" previousLabel="Anterior" nextLabel="Próximo">
+            </pagination-controls>
+
+            <p><a class="btn btn-primary btn-outline-primary px-4 py-2" (click)="novoProduto()" routerLink="/product"
+                    routerLinkActive="active">ADICIONAR</a></p>
+
+        </mat-card>
+
+        <br />
+
+        <div *ngIf="proSel">
+            <mat-card class="cardStyle">
+
+                <h2>Inserir/Editar</h2>
+
+                <table class="example-full-width" cellspacing="0">
+                    <tr>
+                        <td>
+                            <mat-form-field class="example-full-width">
+                                <input matInput [(ngModel)]="proSel.nome" placeholder="Nome da Marmita"
+                                    [formControl]="nomeControl" required>
+                                <mat-error *ngIf="nomeControl.invalid">É necessário informar um nome</mat-error>
+                            </mat-form-field>
+                        </td>
+                        <td>
+                            <mat-form-field class="example-full-width">
+                                <mat-select [(ngModel)]="proSel.tamanho" placeholder="Tamanho"
+                                    [formControl]="tamanhoControl" required>
+                                    <mat-option>--</mat-option>
+                                    <mat-option *ngFor="let tamanho of tamanhos" [value]="tamanho.name">
+                                        {{tamanho.name}}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="tamanhoControl.hasError('required')">Selecione uma opção</mat-error>
+                                <mat-hint>{{tamanhoControl.value?.valor}}</mat-hint>
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                </table>
+
+                <br />
+
+                <table class="example-full-width" cellspacing="0">
+                    <tr>
+                        <td>
+                            <mat-form-field class="example-full-width">
+                                <input matInput [(ngModel)]="proSel.preco" [formControl]="precoControl"
+                                    placeholder="Preço" required>
+                                <mat-error *ngIf="precoControl.invalid">É necessário informar um preço</mat-error>
+                            </mat-form-field>
+                        </td>
+                        <td>
+                            <mat-form-field class="example-full-width">
+                                <input matInput [(ngModel)]="proSel.qtdEstoque" placeholder="Quantidade em estoque"
+                                    [formControl]="qtdEstoqueControl" required>
+                                <mat-error *ngIf="qtdEstoqueControl.invalid">É necessário informar um preço</mat-error>
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                </table>
+
+                <br />
+
+                <table class="example-full-width" cellspacing="0">
+                    <tr>
+                        <td>
+                            <mat-form-field class="example-full-width">
+                                <input matInput [(ngModel)]="proSel.categoria" placeholder="Categoria"
+                                    [formControl]="categoriaControl" required>
+                                <mat-error *ngIf="categoriaControl.invalid">Informe uma categoria; Ex: Fit</mat-error>
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                </table>
+
+                <br />
+
+                <div id="styleButton">
+                    <p><a class="btn btn-primary btn-outline-primary px-4 py-2" (click)="salvarProduto()"
+                            routerLink="/product" routerLinkActive="active">Salvar</a></p>
+
+                    <p><button class="btn btn-primary btn-outline-primary px-4 py-2" (click)="cancelar()"
+                            routerLink="/product" routerLinkActive="active">Cancelar</button></p>
+                </div>
+
+            </mat-card>
+        </div>
+        <br />
+        <br />
+        <br />
+    </div>
+</div>
